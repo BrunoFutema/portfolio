@@ -19,7 +19,7 @@
     "forceConsistentCasingInFileNames": true,
     "baseUrl": "./src",
     "paths": {
-      "@modules/*": ["modules/*"],
+      "@apps/*": ["apps/*"],
       "@config/*": ["config/*"],
       "@shared/*": ["shared/*"]
     }
