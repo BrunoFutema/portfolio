@@ -1,15 +1,16 @@
 import 'dotenv/config';
+import 'reflect-metadata';
 
 import express from 'express';
 
-import '../typeorm';
+import routes from './routes';
+
+import '@shared/infra/typeorm';
+import '@shared/container';
 
 const app = express();
 
-app.get('/', (request, response) => {
-  return response.json({ message: 'Hello Portfolio!' });
-});
+app.use(express.json());
+app.use(routes);
 
-app.listen(3333, () => {
-  console.info('🚀 Server started on port 3333!');
-});
+app.listen(3333, () => console.info('🚀 Server started on port 3333!'));
