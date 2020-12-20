@@ -4,6 +4,8 @@ import 'reflect-metadata';
 import express from 'express';
 import cors from 'cors';
 
+import airCncUploadConfig from '@config/airCncUpload';
+
 import { Server as SocketIo, Socket } from 'socket.io';
 import { createServer } from 'http';
 
@@ -35,6 +37,7 @@ app.use((request, response, next) => {
 
 app.use(cors());
 app.use(express.json());
+app.use('/air-cnc-files/', express.static(airCncUploadConfig.airCncFolder));
 app.use(routes);
 
 server.listen(3333, () => console.info('🚀 Server started on port 3333!'));
