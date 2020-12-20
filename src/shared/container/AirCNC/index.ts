@@ -6,6 +6,9 @@ import UsersRepository from '@apps/AirCNC/modules/users/infra/typeorm/repositori
 import ISpotsRepository from '@apps/AirCNC/modules/spots/repositories/ISpotsRepository';
 import SpotsRepository from '@apps/AirCNC/modules/spots/infra/typeorm/repositories/SpotsRepository';
 
+import IBookingsRepository from '@apps/AirCNC/modules/bookings/repositories/IBookingsRepository';
+import BookingsRepository from '@apps/AirCNC/modules/bookings/infra/typeorm/repositories/BookingsRepository';
+
 container.registerSingleton<IUsersRepository>(
   'AirCNC_UsersRepository',
   UsersRepository,
@@ -14,4 +17,9 @@ container.registerSingleton<IUsersRepository>(
 container.registerSingleton<ISpotsRepository>(
   'AirCNC_SpotsRepository',
   SpotsRepository,
+);
+
+container.registerSingleton<IBookingsRepository>(
+  'AirCNC_BookingsRepository',
+  BookingsRepository,
 );
