@@ -18,6 +18,12 @@ class FakeSpotsRepository implements ISpotsRepository {
     return spot;
   }
 
+  public async findByUserId(user_id: string): Promise<Spot[]> {
+    const findSpots = this.spots.filter(spot => spot.user_id === user_id);
+
+    return findSpots;
+  }
+
   public async findByTechsNames(techs: string[]): Promise<Spot[]> {
     const findSpots = this.spots.filter(
       spot => spot.techs.filter(tech => techs.includes(tech.name)).length > 0,
