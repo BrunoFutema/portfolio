@@ -20,6 +20,9 @@ class Booking {
   date: Date;
 
   @Column()
+  approved: boolean;
+
+  @Column()
   spot_id: string;
 
   @ManyToOne(() => Spot, { eager: true })
