@@ -21,7 +21,9 @@ class SpotsRepository implements ISpotsRepository {
   }
 
   public async findByTechsNames(techs: string[]): Promise<Spot[]> {
-    const findSpots = await this.ormRepository.find({ relations: ['techs'] });
+    const findSpots = await this.ormRepository.find({
+      relations: ['techs', 'user'],
+    });
 
     const foundedSpotsByTechsNames = findSpots.filter(
       spot => spot.techs.filter(tech => techs.includes(tech.name)).length > 0,

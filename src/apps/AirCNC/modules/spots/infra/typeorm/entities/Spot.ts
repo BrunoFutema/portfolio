@@ -5,7 +5,11 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   OneToMany,
+  ManyToOne,
+  JoinColumn,
 } from 'typeorm';
+
+import User from '../../../../users/infra/typeorm/entities/User';
 
 import Tech from './Tech';
 
@@ -28,6 +32,10 @@ class Spot {
 
   @Column()
   user_id: string;
+
+  @ManyToOne(() => User)
+  @JoinColumn({ name: 'user_id' })
+  user: User;
 
   @CreateDateColumn()
   created_at: Date;

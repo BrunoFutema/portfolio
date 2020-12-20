@@ -20,9 +20,9 @@ export default class SpotsController {
     const { company, techs, price } = request.body;
     const { user_id } = request.headers;
 
-    const createUserService = container.resolve(CreateSpotService);
+    const createSpotService = container.resolve(CreateSpotService);
 
-    const spot = await createUserService.execute({
+    const spot = await createSpotService.execute({
       thumbnail: filename,
       company,
       price,
