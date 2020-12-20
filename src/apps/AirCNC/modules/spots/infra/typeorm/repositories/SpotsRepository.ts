@@ -20,6 +20,16 @@ class SpotsRepository implements ISpotsRepository {
     return spot;
   }
 
+  public async findByTechsNames(techs: string[]): Promise<Spot[]> {
+    const findSpots = await this.ormRepository.find({ relations: ['techs'] });
+
+    const foundedSpotsByTechsNames = findSpots.filter(
+      spot => spot.techs.filter(tech => techs.includes(tech.name)).length > 0,
+    );
+
+    return foundedSpotsByTechsNames;
+  }
+
   public async save(spot: Spot): Promise<Spot> {
     await this.ormRepository.save(spot);
 
