@@ -18,4 +18,16 @@ describe('AirCNC_CreateUsers', () => {
 
     expect(user).toHaveProperty('id');
   });
+
+  it('should be able to find a AirCNC user already exists', async () => {
+    const user = await createUserService.execute({
+      email: 'johndoe@example.com',
+    });
+
+    const findUser = await createUserService.execute({
+      email: user.email,
+    });
+
+    expect(findUser).toHaveProperty('id');
+  });
 });
