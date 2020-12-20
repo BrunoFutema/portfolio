@@ -22,14 +22,14 @@ class Booking {
   @Column()
   spot_id: string;
 
-  @ManyToOne(() => Spot)
+  @ManyToOne(() => Spot, { eager: true })
   @JoinColumn({ name: 'spot_id' })
   spot: Spot;
 
   @Column()
   user_id: string;
 
-  @ManyToOne(() => User)
+  @ManyToOne(() => User, { eager: true })
   @JoinColumn({ name: 'user_id' })
   user: User;
 

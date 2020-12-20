@@ -20,6 +20,12 @@ class BookingsRepository implements IBookingsRepository {
     return booking;
   }
 
+  public async findById(id: string): Promise<Booking | undefined> {
+    const findBooking = await this.ormRepository.findOne(id);
+
+    return findBooking;
+  }
+
   public async save(booking: Booking): Promise<Booking> {
     await this.ormRepository.save(booking);
 

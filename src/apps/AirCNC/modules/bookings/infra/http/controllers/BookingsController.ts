@@ -17,6 +17,12 @@ export default class BookingsController {
       user_id: user_id as string,
     });
 
+    const ownerSocket = request.connectedUsers[booking.spot.user_id];
+
+    if (ownerSocket) {
+      request.io.to(ownerSocket).emit('booking_request', booking);
+    }
+
     return response.json(booking);
   }
 }

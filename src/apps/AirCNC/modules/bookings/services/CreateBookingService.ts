@@ -24,7 +24,9 @@ class CreateBookingService {
       user_id,
     });
 
-    return booking;
+    const findBooking = await this.bookingsRepository.findById(booking.id);
+
+    return findBooking;
   }
 }
 

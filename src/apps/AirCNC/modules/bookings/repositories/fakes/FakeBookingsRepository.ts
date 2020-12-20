@@ -18,6 +18,12 @@ class FakeBookingsRepository implements IBookingsRepository {
     return booking;
   }
 
+  public async findById(id: string): Promise<Booking | undefined> {
+    const findBooking = this.bookings.find(booking => booking.id === id);
+
+    return findBooking;
+  }
+
   public async save(booking: Booking): Promise<Booking> {
     const findIndex = this.bookings.findIndex(
       findBooking => findBooking.id === booking.id,
