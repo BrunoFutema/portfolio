@@ -3,3 +3,8 @@ dist
 .env
 ormconfig.json
 coverage
+
+!tmp/.gitkeep
+
+tmp/air-cnc-uploads/*
+!tmp/air-cnc-uploads/.gitkeep
