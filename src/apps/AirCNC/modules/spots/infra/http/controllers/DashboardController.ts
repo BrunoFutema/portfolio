@@ -5,7 +5,7 @@ import ListSpotsService from '@apps/AirCNC/modules/spots/services/ListSpotsServi
 
 export default class DashboardController {
   public async show(request: Request, response: Response): Promise<Response> {
-    const { user_id } = request.query;
+    const { user_id } = request.headers;
 
     const listSpotsService = container.resolve(ListSpotsService);
 
