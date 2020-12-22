@@ -1,3 +1,4 @@
+import FakeStorageProvider from '../../../../../shared/container/providers/StorageProvider/fakes/FakeStorageProvider';
 import FakeUsersRepository from '../../users/repositories/fakes/FakeUsersRepository';
 import FakeSpotsRepository from '../repositories/fakes/FakeSpotsRepository';
 import CreateSpotService from './CreateSpotService';
@@ -5,6 +6,7 @@ import ListSpotsRepository from './ListSpotsService';
 
 let fakeUsersRepository: FakeUsersRepository;
 let fakeSpotsRepository: FakeSpotsRepository;
+let fakeStorageProvider: FakeStorageProvider;
 let createSpotService: CreateSpotService;
 let listSpotsRepository: ListSpotsRepository;
 
@@ -12,8 +14,12 @@ describe('AirCNC_ListSpotsByTechs', () => {
   beforeEach(() => {
     fakeUsersRepository = new FakeUsersRepository();
     fakeSpotsRepository = new FakeSpotsRepository();
+    fakeStorageProvider = new FakeStorageProvider();
 
-    createSpotService = new CreateSpotService(fakeSpotsRepository);
+    createSpotService = new CreateSpotService(
+      fakeSpotsRepository,
+      fakeStorageProvider,
+    );
     listSpotsRepository = new ListSpotsRepository(fakeSpotsRepository);
   });
 

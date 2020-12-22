@@ -1,5 +1,6 @@
 import { injectable, inject } from 'tsyringe';
 
+import IStorageProvider from '@shared/container/providers/StorageProvider/models/IStorageProvider';
 import ISpotsRepository from '@apps/AirCNC/modules/spots/repositories/ISpotsRepository';
 
 import Spot from '../infra/typeorm/entities/Spot';
@@ -18,6 +19,9 @@ class CreateSpotService {
   constructor(
     @inject('AirCNC_SpotsRepository')
     private spotsRepository: ISpotsRepository,
+
+    @inject('StorageProvider')
+    private storageProvider: IStorageProvider,
   ) {}
 
   public async execute({
@@ -38,6 +42,8 @@ class CreateSpotService {
       techs: parsedTechs,
       user_id,
     });
+
+    await this.storageProvider.saveFile(thumbnail);
 
     return spot;
   }

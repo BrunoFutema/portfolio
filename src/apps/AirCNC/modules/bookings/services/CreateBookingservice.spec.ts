@@ -1,3 +1,4 @@
+import FakeStorageProvider from '../../../../../shared/container/providers/StorageProvider/fakes/FakeStorageProvider';
 import FakeUsersRepository from '../../users/repositories/fakes/FakeUsersRepository';
 import FakeSpotsRepository from '../../spots/repositories/fakes/FakeSpotsRepository';
 import FakeBookingsRepository from '../repositories/fakes/FakeBookingsRepository';
@@ -7,6 +8,7 @@ import CreateBookingService from './CreateBookingService';
 let fakeUsersRepository: FakeUsersRepository;
 let fakeSpotsRepository: FakeSpotsRepository;
 let fakeBookingsRepository: FakeBookingsRepository;
+let fakeStorageProvider: FakeStorageProvider;
 let createSpotService: CreateSpotService;
 let createBookingService: CreateBookingService;
 
@@ -15,8 +17,12 @@ describe('AirCNC_CreateBookings', () => {
     fakeUsersRepository = new FakeUsersRepository();
     fakeSpotsRepository = new FakeSpotsRepository();
     fakeBookingsRepository = new FakeBookingsRepository();
+    fakeStorageProvider = new FakeStorageProvider();
 
-    createSpotService = new CreateSpotService(fakeSpotsRepository);
+    createSpotService = new CreateSpotService(
+      fakeSpotsRepository,
+      fakeStorageProvider,
+    );
     createBookingService = new CreateBookingService(fakeBookingsRepository);
   });
 
