@@ -6,7 +6,7 @@ import CreateBookingService from '@apps/AirCNC/modules/bookings/services/CreateB
 export default class BookingsController {
   public async create(request: Request, response: Response): Promise<Response> {
     const { spot_id } = request.params;
-    const { date } = request.body;
+    const { date, user_id: user } = request.body;
     const { user_id } = request.headers;
 
     const createBookingService = container.resolve(CreateBookingService);
@@ -14,7 +14,7 @@ export default class BookingsController {
     const booking = await createBookingService.execute({
       date,
       spot_id,
-      user_id: user_id as string,
+      user_id: user_id ? (user_id as string) : user,
     });
 
     const ownerSocket = request.connectedUsers[booking.spot.user_id];
