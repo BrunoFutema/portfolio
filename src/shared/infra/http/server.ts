@@ -37,7 +37,7 @@ app.use((request, response, next) => {
 
 app.use(
   cors({
-    origin: 'https://dev-bfutema-aircnc.netlify.app',
+    origin: '*',
   }),
 );
 app.use(express.json());
