@@ -20,6 +20,8 @@ export default class SpotsController {
     const { company, techs, price } = request.body;
     const { user_id } = request.headers;
 
+    console.info(user_id);
+
     const createSpotService = container.resolve(CreateSpotService);
 
     const spot = await createSpotService.execute({
