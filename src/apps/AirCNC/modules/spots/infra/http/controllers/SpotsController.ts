@@ -17,10 +17,10 @@ export default class SpotsController {
 
   public async create(request: Request, response: Response): Promise<Response> {
     const { filename } = request.file;
-    const { company, techs, price } = request.body;
+    const { company, techs, price, user } = request.body;
     const { user_id } = request.headers;
 
-    console.info(user_id);
+    console.info(request);
 
     const createSpotService = container.resolve(CreateSpotService);
 
@@ -29,7 +29,7 @@ export default class SpotsController {
       company,
       price,
       techs,
-      user_id: user_id as string,
+      user_id: user_id ? (user_id as string) : user,
     });
 
     return response.json(spot);
