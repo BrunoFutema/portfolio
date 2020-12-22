@@ -35,7 +35,11 @@ app.use((request, response, next) => {
   return next();
 });
 
-app.use(cors());
+app.use(
+  cors({
+    origin: 'https://dev-bfutema-aircnc.netlify.app',
+  }),
+);
 app.use(express.json());
 app.use('/air-cnc-files/', express.static(airCncUploadConfig.airCncFolder));
 app.use(routes);
