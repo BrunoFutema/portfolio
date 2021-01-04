@@ -32,6 +32,8 @@ app.use((request, response, next) => {
   request.io = io;
   request.connectedUsers = connectedUsers;
 
+  console.info(request, connectedUsers);
+
   return next();
 });
 
