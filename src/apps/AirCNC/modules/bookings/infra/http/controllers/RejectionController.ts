@@ -15,6 +15,8 @@ export default class RejectionController {
 
     const bookingUserSocket = request.connectedUsers[booking.user_id];
 
+    booking.approved = false;
+
     if (bookingUserSocket) {
       request.io.to(bookingUserSocket).emit('booking_response', booking);
     }
