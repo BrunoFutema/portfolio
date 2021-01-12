@@ -3,9 +3,12 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  ManyToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+
+import Role from './Role';
 
 @Entity('users')
 class User {
@@ -44,6 +47,9 @@ class User {
 
   @Column()
   lockout_end_date: Date;
+
+  @ManyToMany(() => Role, role => role.users)
+  roles: Role[];
 
   @CreateDateColumn()
   created_at: Date;
